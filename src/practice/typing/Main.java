@@ -14,13 +14,14 @@ public class Main {
 		Scanner grtmp = new Scanner(System.in);
 
 		String gameRestart = "1";
-
+//=============メインゲーム　ループ
 		while(gameRestart.equals("1")) {
+			//todo: ランキングの実装
 			questioning();
 			System.out.print("ゲームを続ける：１　それ以外：終了");
 			gameRestart = grtmp.nextLine();
-		}
 
+		}
 
 	}
 
