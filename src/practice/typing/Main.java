@@ -1,23 +1,27 @@
 package practice.typing;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
+	private static List<Long> ranking = new ArrayList<>();
+
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
-/**
-		final String EASY_CHOICE	 = "1";
-		final String NORMAL_CHOICE	 = "2";
-		final String HARD_CHOICE	 = "3";
-**/
 		Scanner grtmp = new Scanner(System.in);
 
 		String gameRestart = "1";
+		long playingTime = 0;
+		List<Long> rankingList = new ArrayList<>();
 //=============メインゲーム　ループ
 		while(gameRestart.equals("1")) {
 			//todo: ランキングの実装
-			questioning();
+			playingTime = questioning();
+			rankingList  = ranking(playingTime);
+			showRanking(rankingList);
 			System.out.print("ゲームを続ける：１　それ以外：終了");
 			gameRestart = grtmp.nextLine();
 
@@ -34,7 +38,7 @@ public class Main {
 		}
 	}
 
-	private static void questioning() {
+	private static long questioning() {
 
 		String userInp;
 
@@ -45,6 +49,7 @@ public class Main {
 		userInp = userInpQuizLevel.nextLine();
 
 		countDown();
+		long MeasurePlayingTime = System.currentTimeMillis();
 
 		for(String question :quiz.createQuiz(userInp)) {
 
@@ -57,6 +62,24 @@ public class Main {
 				userInp = userInpQuizLevel.nextLine();
 			}
 			System.out.println("OK");
+		}
+		return (System.currentTimeMillis() - MeasurePlayingTime );
+	}
+
+	public static List<Long> ranking(long playingTime){
+
+		ranking.add(playingTime);
+		Collections.sort(ranking);
+		if(ranking.size() > 10) {
+			ranking.remove(10);
+		}
+		return ranking;
+	}
+
+	private static void showRanking(List<Long> rankingList) {
+		for(int i = 0; i < rankingList.size(); i++) {
+			System.out.print( (i+1) + "番目:");
+			System.out.println(rankingList.get(i));
 		}
 	}
 }

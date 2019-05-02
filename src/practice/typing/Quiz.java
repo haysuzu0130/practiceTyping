@@ -26,7 +26,6 @@ public class Quiz {
 
 	public List<String> createQuiz(String inpLevel){
 
-		System.out.println("難易度を選択してください");
 		return createShuffledQuizList(inpLevel);
 
 	}
