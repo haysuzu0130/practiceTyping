@@ -21,7 +21,7 @@ public class Quiz {
 	public Quiz() {
 		Collections.addAll(quizEasyList, "test", "code", "game", "practice", "happy");
 		Collections.addAll(quizNormalList, "stack", "overfullow", "paypay", "bloom", "payperview");
-		Collections.addAll(quizHardlList, "nood", "cpu", "memory", "shuffle", "gsenzyou");
+		Collections.addAll(quizHardlList, "gradle", "cpu", "memory", "shuffle", "stuckbufferoverflow");
 	}
 
 	public List<String> createQuiz(String inpLevel){
@@ -35,12 +35,12 @@ public class Quiz {
 		List<String> result = new ArrayList<>();
 
 		if(inpLevel.equals(EASY_CHOICE)) {
-			result.addAll(quizHardlList);
+			result.addAll(quizEasyList);
 			shuffleQuizList(result.subList(0, 5));
 		}
 		if(inpLevel.equals(NORMAL_CHOICE)) {
-			result.addAll(quizEasyList);
 			result.addAll(quizNormalList);
+			result.addAll(quizEasyList);
 			shuffleQuizList(result.subList(0,10));
 		}
 		if(inpLevel.equals(HARD_CHOICE)) {
